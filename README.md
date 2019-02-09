@@ -1,1 +1,1 @@
-# Path tracer
+# Path Tracer
