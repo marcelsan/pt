@@ -51,7 +51,7 @@ int main(int argc, char ** argv) {
 
 	const int nx = 1200;
 	const int ny = 800;
-	const int spp = 1024;
+	const int spp = 128;
 
     camera cam(vec3(13,2,3), vec3(0,0,0), vec3(0,1,0), 20, float(nx)/float(ny), 0.1, 10.0, 0.0, 1.0);
 
