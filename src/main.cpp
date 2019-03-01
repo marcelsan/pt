@@ -23,7 +23,8 @@ hitable* random_scene(int n = 500) {
             vec3 center(a+0.9*drand48(),0.2,b+0.9*drand48()); 
             if ((center-vec3(4,0.2,0)).length() > 0.9) { 
                 if (choose_mat < 0.8) {  // diffuse
-                    list[i++] = new sphere(center, 0.2, new lambertian(vec3(drand48()*drand48(), drand48()*drand48(), drand48()*drand48())));
+                    list[i++] = new moving_sphere(center, center + vec3(0, 0.5*drand48(), 0), 0.0, 1.0, 0.2, 
+                        new lambertian(vec3(drand48()*drand48(), drand48()*drand48(), drand48()*drand48())));
                 }
                 else if (choose_mat < 0.95) { // metal
                     list[i++] = new sphere(center, 0.2,
@@ -43,17 +44,17 @@ hitable* random_scene(int n = 500) {
     return new hitable_list(list,i);
 }
 
-int main(int argc, char ** argv) {
-	camera cam(vec3(13,2,3), vec3(0,0,0), vec3(0,1,0), 20, float(nx)/float(ny), 0.1, 10.0);
-	
+int main(int argc, char ** argv) {	
 	std::string output_file = "out.ppm";
 	if (argc > 1) output_file = argv[1];
 	std::ofstream out(output_file);
 
 	const int nx = 1200;
 	const int ny = 800;
-	const int spp = 1;
-	
+	const int spp = 1024;
+
+    camera cam(vec3(13,2,3), vec3(0,0,0), vec3(0,1,0), 20, float(nx)/float(ny), 0.1, 10.0, 0.0, 1.0);
+
 	std::cout << "-- Create random scene." << std::endl;
 	hitable* world = random_scene();
 
