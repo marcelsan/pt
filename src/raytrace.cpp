@@ -38,6 +38,7 @@ namespace raytrace {
 				int ir = int(255.99*col.r());
 				int ig = int(255.99*col.g());
 				int ib = int(255.99*col.b());
+				
 				out << ir << " " << ig << " " << ib << "\n";
 			}
 		}
